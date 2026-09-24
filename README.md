@@ -108,34 +108,26 @@ Spam protection: a hidden `botcheck` honeypot field. Web3Forms also filters on i
 
 ## 5. Deploy to GitHub Pages with your VentraIP domain
 
-> I couldn't create a new repository from the build session: GitHub returned "Resource not accessible by integration". So the site sits in the `nickbeattie-site/` folder of the working branch. Moving it into its own repository takes about two minutes. Your GitHub username is **MeridianBT**.
+The code is at **https://github.com/MeridianBT/nickbeattie-site** on the `main` branch. Every push to `main` redeploys the site within a minute or two.
 
-### a. Create the repository and push
+### a. Make sure the repo is public
 
-1. On GitHub, click **New repository**. Name it `nickbeattie-site` and make it **Public**, since free Pages needs a public repo. Don't add a README.
-2. From inside this `nickbeattie-site` folder:
-   ```
-   git init -b main
-   git add .
-   git commit -m "nickbeattie.com v1"
-   git remote add origin https://github.com/MeridianBT/nickbeattie-site.git
-   git push -u origin main
-   ```
+Free GitHub Pages needs a public repository. Go to **Settings › General › Danger Zone › Change visibility** if it's private.
 
 ### b. Turn on Pages
 
-3. In the repo, go to **Settings › Pages**. Set **Source** to "Deploy from a branch", **Branch** to `main`, folder `/ (root)`, and click **Save**.
-4. Wait a minute. The site appears at `https://meridianbt.github.io/nickbeattie-site/`. Check it there first, with the [TBC] highlights showing.
+1. In the repo, go to **Settings › Pages**. Set **Source** to "Deploy from a branch", **Branch** to `main`, folder `/ (root)`, and click **Save**.
+2. Because the repo already has a `CNAME` file, GitHub fills in `nickbeattie.com` as the custom domain by itself. From then on, `meridianbt.github.io/nickbeattie-site/` redirects to nickbeattie.com, so it won't load until DNS is done. To review before launch, preview locally (see "Preview locally" above).
 
 ### c. Add the custom domain *before* touching DNS
 
-5. Still in **Settings › Pages**, under **Custom domain**, enter `nickbeattie.com` and click **Save**. The `CNAME` file in this repo already says the same thing.
-6. Recommended: protect the domain from takeover. Go to your GitHub account (**Settings › Pages › Add a domain**) and verify `nickbeattie.com`. GitHub will give you a TXT record to *add* (see the note below).
+3. Still in **Settings › Pages**, check that **Custom domain** shows `nickbeattie.com`. If it's empty, type it in and click **Save**.
+4. Recommended: protect the domain from takeover. Go to your GitHub account (**Settings › Pages › Add a domain**) and verify `nickbeattie.com`. GitHub will give you a TXT record to *add* (see the note below).
 
 ### d. VentraIP DNS
 
-7. Log in to VentraIP and open **My Services › Domain Names › nickbeattie.com › DNS Management**.
-8. Remove any existing **A** records for `@` (the bare domain) that point elsewhere, such as parking or old hosting. Then add these four:
+5. Log in to VentraIP and open **My Services › Domain Names › nickbeattie.com › DNS Management**.
+6. Remove any existing **A** records for `@` (the bare domain) that point elsewhere, such as parking or old hosting. Then add these four:
 
    | Type | Host | Value | TTL |
    |---|---|---|---|
@@ -144,7 +136,7 @@ Spam protection: a hidden `botcheck` honeypot field. Web3Forms also filters on i
    | A | @ | 185.199.110.153 | 3600 |
    | A | @ | 185.199.111.153 | 3600 |
 
-9. Add, or replace any existing `www` record with, this:
+7. Add, or replace any existing `www` record with, this:
 
    | Type | Host | Value | TTL |
    |---|---|---|---|
@@ -152,13 +144,13 @@ Spam protection: a hidden `botcheck` honeypot field. Web3Forms also filters on i
 
    The value is `<username>.github.io` with no repo name and no `https://`.
 
-> ⚠️ **Leave every MX and TXT record exactly as it is.** They run your nickbeattie.com email and its SPF/DKIM/DMARC checks. Changing or deleting them will stop mail from arriving. The only TXT change is *adding* the new GitHub verification record from step 6, if you did that step.
+> ⚠️ **Leave every MX and TXT record exactly as it is.** They run your nickbeattie.com email and its SPF/DKIM/DMARC checks. Changing or deleting them will stop mail from arriving. The only TXT change is *adding* the new GitHub verification record from step 4, if you did that step.
 
 ### e. HTTPS
 
-10. DNS usually takes 10 minutes to a few hours. Back in **Settings › Pages**, wait for "DNS check successful". GitHub then issues a free certificate, which can take up to an hour.
-11. Tick **Enforce HTTPS**. If the box is greyed out, the certificate isn't ready yet, so come back later.
-12. Visit https://nickbeattie.com and https://www.nickbeattie.com. Both should load, and www redirects to the bare domain.
+8. DNS usually takes 10 minutes to a few hours. Back in **Settings › Pages**, wait for "DNS check successful". GitHub then issues a free certificate, which can take up to an hour.
+9. Tick **Enforce HTTPS**. If the box is greyed out, the certificate isn't ready yet, so come back later.
+10. Visit https://nickbeattie.com and https://www.nickbeattie.com. Both should load, and www redirects to the bare domain.
 
 ### Before launch
 
