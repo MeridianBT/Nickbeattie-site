@@ -108,7 +108,7 @@ Spam protection: a hidden `botcheck` honeypot field. Web3Forms also filters on i
 
 ## 5. Deploy to GitHub Pages with your VentraIP domain
 
-The code is at **https://github.com/MeridianBT/nickbeattie-site** on the `main` branch. Every push to `main` redeploys the site within a minute or two.
+The code is at **https://github.com/MeridianBT/Nickbeattie-site** on the `main` branch. Every push to `main` redeploys the site within a minute or two.
 
 ### a. Make sure the repo is public
 
@@ -117,7 +117,7 @@ Free GitHub Pages needs a public repository. Go to **Settings › General › Da
 ### b. Turn on Pages
 
 1. In the repo, go to **Settings › Pages**. Set **Source** to "Deploy from a branch", **Branch** to `main`, folder `/ (root)`, and click **Save**.
-2. Because the repo already has a `CNAME` file, GitHub fills in `nickbeattie.com` as the custom domain by itself. From then on, `meridianbt.github.io/nickbeattie-site/` redirects to nickbeattie.com, so it won't load until DNS is done. To review before launch, preview locally (see "Preview locally" above).
+2. Because the repo already has a `CNAME` file, GitHub fills in `nickbeattie.com` as the custom domain by itself. From then on, `meridianbt.github.io/Nickbeattie-site/` redirects to nickbeattie.com, so it won't load until DNS is done. To review before launch, preview locally (see "Preview locally" above).
 
 ### c. Add the custom domain *before* touching DNS
 
